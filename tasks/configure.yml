@@ -1,0 +1,14 @@
+---
+
+- name: Configure teleport
+  template:
+    dest: /etc/teleport.yaml
+    src: teleport.yaml.j2
+    owner: root
+    group: root
+    mode: 0400
+    backup: true
+  notify:
+    - restart teleport
+  when: (teleport__agent is defined) or
+        (teleport__proxy is defined)

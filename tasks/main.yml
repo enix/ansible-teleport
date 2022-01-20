@@ -1,0 +1,10 @@
+---
+
+- name: "Checking system OS"
+  fail:
+    msg: "This is not a Debian/Ubuntu based distribution. Proxmox VE is not compatible"
+  when: ansible_facts['os_family'] != "Debian"
+
+- include_tasks: install-packages.yml
+
+- include_tasks: configure.yml

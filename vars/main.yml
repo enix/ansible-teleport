@@ -1,0 +1,5 @@
+---
+# vars file for teleport
+
+teleport__apt_repo: "deb https://deb.releases.teleport.dev/ stable main"
+teleport__apt_repo_key: "https://deb.releases.teleport.dev/teleport-pubkey.asc"

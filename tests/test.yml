@@ -1,0 +1,12 @@
+---
+- hosts: test
+  tasks:
+    - name: Install depends
+      apt:
+        name: [gpg]
+        state: present
+
+- hosts: test
+  roles:
+    - role: '../../.'
+#      teleport__version: 8.1.0

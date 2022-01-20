@@ -1,0 +1,27 @@
+galaxy_info:
+  role_name: teleport
+  author: Laurent Corbes
+  description: Ansible role to deploy teleport software
+  company: Enix (http://www.enix.io)
+
+  license: license GPLv2
+
+  min_ansible_version: 2.9
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - bionic
+    - focal
+  - name: Debian
+    versions:
+    - stretch
+    - buster
+    - bullseye
+
+  galaxy_tags:
+    - teleport
+    - bastion
+    - ssh
+
+dependencies: []

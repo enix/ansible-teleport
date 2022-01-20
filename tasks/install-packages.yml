@@ -1,0 +1,27 @@
+---
+
+- name: Install APT https transport
+  apt:
+    package: apt-transport-https
+    state: present
+
+- name: Register repository signing key
+  apt_key:
+    url: "{{ teleport__apt_repo_key }}"
+
+- name: Add debian repository
+  apt_repository:
+    repo: "{{ teleport__apt_repo }}"
+    state: present
+    update_cache: yes
+
+- name: Install teleport package
+  apt:
+    package: "teleport{{ teleport__version | ternary('=' + teleport__version, '') }}"
+    state: present
+    update_cache: yes
+
+- name: Hold teleport package version
+  dpkg_selections:
+    name: teleport
+    selection: hold

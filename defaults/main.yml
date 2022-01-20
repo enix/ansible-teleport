@@ -2,3 +2,16 @@
 # defaults file for teleport
 
 teleport__version: ""
+# teleport__agent enabled / no. disable by default
+teleport__agent: false
+teleport__nodename: "{{ inventory_hostname }}"
+teleport__proxy: false
+teleport__proxy_public_addr: ""
+teleport__proxy_acme: false
+teleport__proxy_acme_email: ""
+teleport__node: false
+teleport__node_token: ""
+teleport__node_server: ""
+teleport__auth: false
+teleport__auth_cluster_name: ""
+teleport__ssh: false

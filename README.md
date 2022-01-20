@@ -21,7 +21,21 @@ Role Variables
 
 This roles comes preloaded with almost every available default. You can override each one in your hosts/group vars, in your inventory, or in your play. See the annotated defaults in `defaults/main.yml` for help in configuration. All provided variables start with `teleport__`.
 
-- `teleport__version` - Version of the binary to install and hold (default "" which install latest available in the repo, but can precise any debian package release version)
+- `teleport__version` - Version of the binary to install and hold (default: `""` which install latest available in the repo, but can precise any debian package release version).
+- `teleport__agent` - Configure and Enable the teleport agent software (default: `false`).
+- `teleport__nodename` - Name the teleport agent report to it's connected proxy. (default: `inventory_hostname`).
+teleport__node: false
+teleport__node_token: ""
+teleport__node_server: ""
+
+- `teleport__proxy` (false) - Enable the proxy mode in teleport
+teleport__proxy_public_addr: ""
+teleport__proxy_acme: false
+teleport__proxy_acme_email: ""
+teleport__auth: false
+teleport__auth_cluster_name: ""
+teleport__ssh: false
+
 
 Dependencies
 ------------

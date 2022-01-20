@@ -10,5 +10,9 @@
     backup: true
   notify:
     - restart teleport
-  when: (teleport__agent is defined) or
-        (teleport__proxy is defined)
+
+- name: Enable teleport
+  service:
+    name: teleport
+    state: started
+    enabled: true

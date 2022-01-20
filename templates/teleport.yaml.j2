@@ -1,1 +1,74 @@
+{{ ansible_managed | comment }}
 ---
+
+version: v2
+teleport:
+  nodename: {{ teleport__nodename }}
+
+{% if teleport__proxy %}
+  data_dir: /var/lib/teleport
+  log:
+    output: stderr
+    severity: INFO
+    format:
+      output: text
+  ca_pin: []
+  diag_addr: ""
+{%endif%}
+
+{% if teleport__node %}
+## remote proxy
+  auth_token: "{{ teleport__node_token }}"
+  auth_servers:
+  - "{{ teleport__node_server }}"
+{%endif%}
+
+auth_service:
+{% if teleport__auth %}
+  enabled: "yes"
+  listen_addr: 0.0.0.0:3025
+  cluster_name: {{ teleport__auth_cluster_name }}
+  proxy_listener_mode: multiplex
+{%else%}
+  enabled: "false"
+{%endif%}
+
+ssh_service:
+{% if teleport__ssh %}
+  enabled: "yes"
+  labels:
+    tenant: {{TENANT}}
+  commands:
+  - name: hostname
+    command: [hostname]
+    period: 1m0s
+{%else%}
+  enabled: "false"
+{%endif%}
+
+proxy_service:
+{% if teleport__proxy %}
+  enabled: "yes"
+  web_listen_addr: 0.0.0.0:443
+  public_addr: {{ teleport__proxy_public_addr }}
+  tunnel_listen_addr: 0.0.0.0:3024
+  https_keypairs: []
+  {% if teleport__proxy_acme %}
+  acme:
+    enabled: "yes"
+    email: {{ teleport__proxy_acme_email }}
+  {% endif %}
+{%else%}
+  enabled: "false"
+{%endif%}
+
+{#
+# {% if teleport__app %}
+# app_service:
+#   enabled: yes
+#   apps:
+#   - name: "{{NOM_DE_L'APPLI}}"
+#     uri: "https://{{IP_OU_HOSTNAME}}:{{PORT}}/"
+#     insecure_skip_verify: true  # Si le certificat présenté par l'appli est autosigné
+# {%endif%}
+#}

@@ -10,3 +10,4 @@
   roles:
     - role: '../../.'
 #      teleport__version: 8.1.0
+      teleport__agent: true

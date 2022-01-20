@@ -1,10 +1,5 @@
 ---
 # handlers file for teleport
 
-# - name: restart $service
-#   sudo: yes
-#   service: name=$service state=restarted
-
-# - name: reload $service
-#   sudo: yes
-#   service: name=$service state=reloaded
+- name: restart teleport
+  service: name=teleport state=restarted

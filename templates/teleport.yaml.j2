@@ -36,8 +36,12 @@ auth_service:
 ssh_service:
 {% if teleport__ssh %}
   enabled: "yes"
+{% if teleport__ssh_labels is defined %}
   labels:
-    tenant: {{TENANT}}
+{% for label_id, value in teleport__ssh_labels.items() %}
+    {{ label_id }}: {{ value }}
+{% endfor %}
+{% endif %}
   commands:
   - name: hostname
     command: [hostname]

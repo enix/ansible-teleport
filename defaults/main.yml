@@ -15,3 +15,4 @@ teleport__node_server: ""
 teleport__auth: false
 teleport__auth_cluster_name: ""
 teleport__ssh: false
+#teleport__ssh_labels: 

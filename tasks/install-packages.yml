@@ -3,6 +3,7 @@
 - name: Install APT https transport
   apt:
     package: apt-transport-https
+    update_cache: yes
     state: present
 
 - name: Register repository signing key

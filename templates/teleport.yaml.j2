@@ -57,11 +57,11 @@ proxy_service:
   public_addr: {{ teleport__proxy_public_addr }}
   tunnel_listen_addr: 0.0.0.0:3024
   https_keypairs: []
-  {% if teleport__proxy_acme %}
+{% if teleport__proxy_acme %}
   acme:
     enabled: "yes"
     email: {{ teleport__proxy_acme_email }}
-  {% endif %}
+{% endif %}
 {%else%}
   enabled: "false"
 {%endif%}

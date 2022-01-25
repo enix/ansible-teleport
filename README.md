@@ -32,6 +32,7 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__auth_cluster_name: ""` - Teleport auth cluster name.
 - `teleport__ssh: false` - Enable teleport ssh module.
 - `teleport__ssh_labels: ''` - Add labels to the ssh module (yaml format).
+- `teleport__binary_compat: false` - If true will deploy a binary version beside the package with more glibc compatibility. (Automatically done on debian pre buster (10) releases)
 
 Dependencies
 ------------
@@ -86,7 +87,6 @@ And add it to your play's roles:
 Still to do
 -----------
 
-- Install centos7 binary version for older OS (override binary path systemd en +). For debian stretch, ubuntu 16.04, ...
 - Manage mode configuration options (static ssl certs)
 - Add app service in proxy configuration
 

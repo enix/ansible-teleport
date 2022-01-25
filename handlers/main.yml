@@ -1,5 +1,10 @@
 ---
 # handlers file for teleport
 
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
 - name: restart teleport
   service: name=teleport state=restarted
+

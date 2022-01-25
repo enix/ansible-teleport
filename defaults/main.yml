@@ -16,3 +16,4 @@ teleport__auth: false
 teleport__auth_cluster_name: ""
 teleport__ssh: false
 #teleport__ssh_labels: 
+teleport__binary_compat: false

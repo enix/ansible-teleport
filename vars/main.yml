@@ -3,3 +3,6 @@
 
 teleport__apt_repo: "deb https://deb.releases.teleport.dev/ stable main"
 teleport__apt_repo_key: "https://deb.releases.teleport.dev/teleport-pubkey.asc"
+
+teleport__binary_compat_centos7_url: "https://get.gravitational.com/teleport-v8.1.1-linux-amd64-centos7-bin.tar.gz"
+teleport__binary_compat_centos6_url: "https://get.gravitational.com/teleport-v8.1.1-linux-amd64-centos6-bin.tar.gz"

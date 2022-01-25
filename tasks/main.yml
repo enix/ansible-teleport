@@ -5,7 +5,16 @@
     msg: "This is not a Debian/Ubuntu based distribution. Proxmox VE is not compatible"
   when: ansible_facts['os_family'] != "Debian"
 
+- name: "Detecting binary compat needs"
+  set_fact:
+    teleport__binary_compat: true
+    teleport__binary_compat_url: "{{ teleport__binary_compat_centos7_url }}"
+  when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "9")
+
 - include_tasks: install-packages.yml
+
+- include_tasks: install-binary-compat.yml
+  when: teleport__binary_compat
 
 - include_tasks: configure.yml
   when: teleport__agent

@@ -50,7 +50,7 @@ Use Ansible galaxy requirements.yml
 
 And add it to your play's roles:
 
-```
+```yaml
 # Node example
     - hosts: all
       roles:
@@ -65,7 +65,7 @@ And add it to your play's roles:
               tenant: toto.com
 ```
 
-```
+```yaml
 # Proxy example
     - hosts: all
       roles:
@@ -88,6 +88,7 @@ Still to do
 
 - Install centos7 binary version for older OS (override binary path systemd en +). For debian stretch, ubuntu 16.04, ...
 - Manage mode configuration options (static ssl certs)
+- Add app service in proxy configuration
 
 Changelog
 ---------

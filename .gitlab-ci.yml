@@ -30,42 +30,18 @@ variables:
 # images It provide a wide variety of OS container images to test with.
 # most frequent ones included here
 
-# debian-wheezy:
-#   image: ansiblecheck/ansiblecheck:debian-wheezy
-#   <<: *ansible_test
+debian-buster:
+  image: registry.gitlab.com/lcaflc/ansiblecheck:debian-buster
+  <<: *ansible_test
 
-# debian-jessie:
-#   image: ansiblecheck/ansiblecheck:debian-jessie
-#   <<: *ansible_test
+debian-bullseye:
+  image: registry.gitlab.com/lcaflc/ansiblecheck:debian-bullseye
+  <<: *ansible_test
 
-# debian-stretch:
-#   image: ansiblecheck/ansiblecheck:debian-stretch
-#   <<: *ansible_test
+ubuntu-bionic:
+  image: registry.gitlab.com/lcaflc/ansiblecheck:ubuntu-bionic
+  <<: *ansible_test
 
-# ubuntu-trusty:
-#   image: ansiblecheck/ansiblecheck:ubuntu-trusty
-#   <<: *ansible_test
-
-# ubuntu-xenial:
-#   image: ansiblecheck/ansiblecheck:ubuntu-xenial
-#   <<: *ansible_test
-
-# centos-6:
-#   image: ansiblecheck/ansiblecheck:centos-6
-#   <<: *ansible_test
-
-# centos-7:
-#   image: ansiblecheck/ansiblecheck:centos-7
-#   <<: *ansible_test
-
-# fedora-23:
-#   image: ansiblecheck/ansiblecheck:fedora-23
-#   <<: *ansible_test
-
-# fedora-24:
-#   image: ansiblecheck/ansiblecheck:fedora-24
-#   <<: *ansible_test
-
-# archlinux-latest:
-#   image: ansiblecheck/ansiblecheck:archlinux-latest
-#   <<: *ansible_test
+ubuntu-focal:
+  image: registry.gitlab.com/lcaflc/ansiblecheck:ubuntu-focal
+  <<: *ansible_test

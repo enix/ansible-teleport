@@ -4,6 +4,8 @@
 - name: reload systemd
   systemd:
     daemon_reload: yes
+  ignore_errors: yes
 
 - name: restart teleport
   service: name=teleport state=restarted
+  ignore_errors: yes

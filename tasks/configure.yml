@@ -16,3 +16,4 @@
     name: teleport
     state: started
     enabled: true
+  ignore_errors: yes

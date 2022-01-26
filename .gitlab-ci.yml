@@ -11,6 +11,7 @@ variables:
 # Run linters. Does not fail if no errors reported
     - ansible-lint --force-color . || true
     - yamllint -f colored . || true
+    - ansible localhost -m setup
 # Uncomment if your role have depends
 #    - ansible-galaxy install -v -r requirements.yml
     - ansible-playbook tests/test.yml --syntax-check
@@ -25,8 +26,6 @@ variables:
 # This part is used to check role run.
 # Add your own tests depending on your $ROLE
     - echo "=======> Starting output tests"
-    # check that our dummy file exists. TOBEREMOVED
-    - cat /tmp/.dummy-ansible-task
 
 # We build using (ansiblecheck)[https://hub.docker.com/r/ansiblecheck/ansiblecheck/]
 # images It provide a wide variety of OS container images to test with.

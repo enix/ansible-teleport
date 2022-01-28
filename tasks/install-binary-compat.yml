@@ -5,6 +5,7 @@
     src: "{{ teleport__binary_compat_url }}"
     dest: /tmp
     remote_src: yes
+    validate_certs: false
 
 - name: Copy binaries
   copy:

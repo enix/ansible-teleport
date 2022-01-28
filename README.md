@@ -10,6 +10,7 @@ Supported targets:
 
 - Ubuntu 18.04 "Bionic"
 - Ubuntu 20.04 "Focal"
+- Debian 8 "Jessie"
 - Debian 9 "Stretch"
 - Debian 10 "Buster"
 - Debian 11 "Bullseye"
@@ -96,7 +97,7 @@ Changelog
 
 ### 0.9.1
 
-Add centos 6 binary compat (debian 8)
+Add centos 6 binary compat (debian 8 jessie)
 ### 0.9.0
 
 Initial version.

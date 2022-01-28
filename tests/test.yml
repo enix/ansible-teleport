@@ -5,6 +5,13 @@
       apt:
         name: [gpg]
         state: present
+      ignore_errors: yes
+    - name: Install depends
+      apt:
+        name: [gpgv]
+        state: present
+      ignore_errors: yes
+      
 
 - hosts: test
   roles:

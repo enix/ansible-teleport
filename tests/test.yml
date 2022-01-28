@@ -9,7 +9,7 @@
       when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
     - name: Remove backports wheezy
       file:
-        path: /etc/apt/sources.list.d/backport.list
+        path: /etc/apt/sources.list.d/backports.list
         state: absent
       when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
 

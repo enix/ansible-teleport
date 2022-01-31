@@ -9,6 +9,12 @@
 - name: Register repository signing key
   apt_key:
     url: "{{ teleport__apt_repo_key }}"
+  when: not teleport__localkey
+
+- name: Register repository signing key
+  apt_key:
+    data: "{{ lookup('file', 'teleport-pubkey.asc') }}"
+  when: teleport__localkey
 
 - name: Add debian repository
   apt_repository:

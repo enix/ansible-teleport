@@ -16,6 +16,15 @@
     data: "{{ lookup('file', 'teleport-pubkey.asc') }}"
   when: teleport__localkey
 
+- name: Install Amazon Root CA
+  copy:
+    src: AmazonRootCA1.pem
+    dest: /etc/ssl/certs
+    mode: 0444
+    owner: root
+    group: root
+  when: teleport__localkey
+
 - name: Add debian repository
   apt_repository:
     repo: "{{ teleport__apt_repo }}"

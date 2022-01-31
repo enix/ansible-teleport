@@ -3,7 +3,9 @@
   tasks:
     - name: Patch sources.list wheezy
       copy:
-        content: "deb http://archive.debian.org/debian wheezy main"
+        content: |
+          deb http://archive.debian.org/debian wheezy main
+          deb http://archive.debian.org/debian-security/ wheezy/updates main
         dest: /etc/apt/sources.list
         mode: 0444
       when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
@@ -11,6 +13,12 @@
       file:
         path: /etc/apt/sources.list.d/backports.list
         state: absent
+      when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
+    - name: Apt configuration
+      copy:
+        content: "Acquire::Check-Valid-Until false;"
+        dest: /etc/apt/apt.conf.d/10-nocheckvalid
+        mode: 0444
       when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
 
     - name: Install depends

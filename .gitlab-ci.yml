@@ -31,9 +31,9 @@ variables:
 # images It provide a wide variety of OS container images to test with.
 # most frequent ones included here
 
-debian-wheezy:
-  image: ansiblecheck/ansiblecheck:debian-wheezy
-  <<: *ansible_test
+# debian-wheezy:
+#   image: ansiblecheck/ansiblecheck:debian-wheezy
+#   <<: *ansible_test
 
 debian-jessie:
   image: ansiblecheck/ansiblecheck:debian-jessie

@@ -96,6 +96,9 @@ Still to do
 Changelog
 ---------
 
+### 0.9.2
+
+Update compat binary to version 8.3.8
 ### 0.9.1
 
 Add centos 6 binary compat (debian 8 jessie)

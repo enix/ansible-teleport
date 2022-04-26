@@ -71,3 +71,12 @@ importgalaxy:
     - ansible --version
   script:
     - ansible-galaxy role import ${GITHUB_GROUP} ${GITHUB_REPO} --token ${GALAXY_API_TOKEN}
+
+# Trigger rebuild of enix install scripts
+enixinstall:
+  stage: deploy
+  only: 
+    - tags
+  trigger: 
+    project: enix/install
+    strategy: depend

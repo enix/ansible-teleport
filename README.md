@@ -96,6 +96,9 @@ Still to do
 Changelog
 ---------
 
+### 1.0.0
+
+Use Enix debian repo by default
 ### 0.9.2
 
 Update compat binary to version 8.3.8

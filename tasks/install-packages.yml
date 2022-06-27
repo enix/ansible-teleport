@@ -11,9 +11,19 @@
     url: "{{ teleport__apt_repo_key }}"
   when: not teleport__localkey
 
-- name: Register repository signing key
+- name: Register local repository signing key
   apt_key:
     data: "{{ lookup('file', 'teleport-pubkey.asc') }}"
+  when: teleport__localkey
+
+- name: Register Enix.io repository signing key
+  apt_key:
+    url: "{{ teleport__enix_apt_repo_key }}"
+  when: not teleport__localkey
+
+- name: Register local Enix.io repository signing key
+  apt_key:
+    data: "{{ lookup('file', 'enix-teleport-pubkey.asc') }}"
   when: teleport__localkey
 
 - name: Install Amazon Root CA
@@ -28,7 +38,13 @@
 - name: Add debian repository
   apt_repository:
     repo: "{{ teleport__apt_repo }}"
-    state: present
+    state: "{{ teleport__apt_repo_status }}"
+    update_cache: yes
+
+- name: Add Enix.io debian repository
+  apt_repository:
+    repo: "{{ teleport__enix_apt_repo }}"
+    state: "{{ teleport__enix_apt_repo_status }}"
     update_cache: yes
 
 - name: Install teleport package

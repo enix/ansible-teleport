@@ -9,7 +9,7 @@ teleport__binary_compat_centos7_url: "https://get.gravitational.com/teleport-v8.
 teleport__binary_compat_centos6_url: "https://get.gravitational.com/teleport-v8.3.8-linux-amd64-centos6-bin.tar.gz"
 
 teleport__enix_apt_repo: "deb http://enix.pages.moi.la/teleport stable 8"
-teleport__enix_apt_repo_key: "http://enix.pages.moi.la/teleport/repository.asc"
+teleport__enix_apt_repo_key: "http://enix.pages.moi.la/teleport/repository-pubkey.asc"
 teleport__enix_apt_repo_status: present
 
 teleport__localkey: false

@@ -62,4 +62,4 @@
 - name: UnHold teleport package version
   dpkg_selections:
     name: teleport
-    selection: unhold
+    selection: install

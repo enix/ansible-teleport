@@ -59,6 +59,10 @@ ubuntu-focal:
   image: registry.gitlab.com/lcaflc/ansiblecheck:ubuntu-focal
   <<: *ansible_test
 
+ubuntu-jammy:
+  image: registry.gitlab.com/lcaflc/ansiblecheck:ubuntu-jammy
+  <<: *ansible_test
+
 importgalaxy:
   stage: deploy
   image: registry.gitlab.com/lcaflc/ansiblecheck:debian-bullseye

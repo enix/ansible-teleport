@@ -10,6 +10,7 @@ Supported targets:
 
 - Ubuntu 18.04 "Bionic"
 - Ubuntu 20.04 "Focal"
+- Ubuntu 22.04 "Jammy"
 - Debian 7 "Wheezy"
 - Debian 8 "Jessie"
 - Debian 9 "Stretch"

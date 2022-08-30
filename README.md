@@ -21,7 +21,7 @@ Role Variables
 
 This roles comes preloaded with almost every available default. You can override each one in your hosts/group vars, in your inventory, or in your play. See the annotated defaults in `defaults/main.yml` for help in configuration. All provided variables start with `teleport__`.
 
-- `teleport__version: ""` - Version of the binary to install and hold, default install latest available in the repo, but can precise any debian package release version.
+- `teleport__version: 8` - Major Version / branch of the binary to install and hold, default install repo version 8. Available now: 8, 9, 10, 11.
 - `teleport__agent: false` - Configure and Enable the teleport agent software.
 - `teleport__nodename: {{ inventory_hostname }}` - Name the teleport agent report to it's connected proxy.
 - `teleport__node: false` - Configure and Enable teleport node role.
@@ -60,6 +60,7 @@ And add it to your play's roles:
       roles:
         - role enix.teleport:
             teleport__agent: true
+            teleport__version: 9
             teleport__nodename: "test.node"
             teleport__node: true
             teleport__node_token: "gjlksfdjglkfsdjlkgfds9423"
@@ -75,6 +76,7 @@ And add it to your play's roles:
       roles:
         - role enix.teleport:
             teleport__agent: true
+            teleport__version: 10
             teleport__nodename: "toto.proxy"
             teleport__proxy: true
             teleport__proxy_public_addr: "toto.tp.com:443"
@@ -95,6 +97,10 @@ Still to do
 
 Changelog
 ---------
+
+### 1.1.0
+
+Fallback to teleport debian repository with major versions.
 
 ### 1.0.0
 

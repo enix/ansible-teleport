@@ -16,15 +16,15 @@
     data: "{{ lookup('file', 'teleport-pubkey.asc') }}"
   when: teleport__localkey
 
-- name: Register Enix.io repository signing key
-  apt_key:
-    url: "{{ teleport__enix_apt_repo_key }}"
-  when: not teleport__localkey
+# - name: Register Enix.io repository signing key
+#   apt_key:
+#     url: "{{ teleport__enix_apt_repo_key }}"
+#   when: not teleport__localkey
 
-- name: Register local Enix.io repository signing key
-  apt_key:
-    data: "{{ lookup('file', 'enix-teleport-pubkey.asc') }}"
-  when: teleport__localkey
+# - name: Register local Enix.io repository signing key
+#   apt_key:
+#     data: "{{ lookup('file', 'enix-teleport-pubkey.asc') }}"
+#   when: teleport__localkey
 
 - name: Install Amazon Root CA
   copy:
@@ -41,6 +41,12 @@
     state: "{{ teleport__apt_repo_status }}"
     update_cache: yes
 
+- name: Remove legacy debian repository
+  apt_repository:
+    repo: "{{ teleport__legacy_apt_repo }}"
+    state: absent
+    update_cache: yes
+
 - name: Add Enix.io debian repository
   apt_repository:
     repo: "{{ teleport__enix_apt_repo }}"
@@ -49,11 +55,11 @@
 
 - name: Install teleport package
   apt:
-    package: "teleport{{ teleport__version | ternary('=' + teleport__version, '') }}"
+    package: "teleport"
     state: present
     update_cache: yes
 
-- name: Hold teleport package version
+- name: UnHold teleport package version
   dpkg_selections:
     name: teleport
-    selection: hold
+    selection: unhold

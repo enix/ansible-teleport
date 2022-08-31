@@ -24,6 +24,7 @@ This roles comes preloaded with almost every available default. You can override
 
 - `teleport__version: 8` - Major Version / branch of the binary to install and hold, default install repo version 8. Available now: 8, 9, 10, 11.
 - `teleport__agent: false` - Configure and Enable the teleport agent software.
+- `teleport__bind_addr: 0.0.0.0` - Bind address used to default all other bind address configuration
 - `teleport__nodename: {{ inventory_hostname }}` - Name the teleport agent report to it's connected proxy.
 - `teleport__node: false` - Configure and Enable teleport node role.
 - `teleport__node_token: ""` - Token used to join the proxy.
@@ -34,8 +35,16 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__proxy_acme_email: ""` - Email for the ACME request.
 - `teleport__auth: false` - Enable teleport auth role.
 - `teleport__auth_cluster_name: ""` - Teleport auth cluster name.
+- `teleport__auth_addr: {{ teleport__bind_addr }}` - Bind address for auth teleport service
+- `teleport__auth_port: 3025` - Port to bind for auth teleport service
+- `teleport__ssh_addr: {{ teleport__bind_addr }}` - Bind address for ssh teleport service
+- `teleport__ssh_port: 3022` - Port to bind for ssh teleport service
 - `teleport__ssh: false` - Enable teleport ssh module.
 - `teleport__ssh_labels: ''` - Add labels to the ssh module (yaml format).
+- `teleport__web_addr: {{ teleport__bind_addr }}` - Bind address for web teleport service
+- `teleport__web_port: 443` - Port to bind for web teleport service
+- `teleport__tunnel_addr: {{ teleport__bind_addr }}` - Bind address for tunnel service
+- `teleport__tunnel_port: 3024` - Port to bind for tunnel teleport service
 - `teleport__binary_compat: false` - If true will deploy a binary version beside the package with more glibc compatibility. (Automatically done on debian pre buster (10) releases)
 
 Dependencies

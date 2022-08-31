@@ -26,7 +26,7 @@ teleport:
 auth_service:
 {% if teleport__auth %}
   enabled: "yes"
-  listen_addr: 0.0.0.0:3025
+  listen_addr: {{ teleport__auth_addr }}:{{ teleport__auth_port }}
   cluster_name: {{ teleport__auth_cluster_name }}
   proxy_listener_mode: multiplex
 {%else%}
@@ -36,6 +36,7 @@ auth_service:
 ssh_service:
 {% if teleport__ssh %}
   enabled: "yes"
+  listen_addr: {{ teleport__ssh_addr }}:{{ teleport__ssh_port }}
 {% if teleport__ssh_labels is defined %}
   labels:
 {% for label_id, value in teleport__ssh_labels.items() %}
@@ -53,9 +54,9 @@ ssh_service:
 proxy_service:
 {% if teleport__proxy %}
   enabled: "yes"
-  web_listen_addr: 0.0.0.0:443
+  web_listen_addr: {{ teleport__web_addr }}:{{ teleport__web_port }}
   public_addr: {{ teleport__proxy_public_addr }}
-  tunnel_listen_addr: 0.0.0.0:3024
+  tunnel_listen_addr: {{ teleport__tunnel_addr }}:{{ teleport__tunnel_port }}
   https_keypairs: []
 {% if teleport__proxy_acme %}
   acme:

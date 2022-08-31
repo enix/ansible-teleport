@@ -7,6 +7,7 @@ teleport__agent: false
 teleport__nodename: "{{ inventory_hostname }}"
 teleport__proxy: false
 teleport__proxy_public_addr: ""
+teleport__bind_addr: "0.0.0.0"
 teleport__proxy_acme: false
 teleport__proxy_acme_email: ""
 teleport__node: false
@@ -14,6 +15,14 @@ teleport__node_token: ""
 teleport__node_server: ""
 teleport__auth: false
 teleport__auth_cluster_name: ""
+teleport__auth_addr: "{{ teleport__bind_addr }}"
+teleport__auth_port: 3025
+teleport__ssh_addr: "{{ teleport__bind_addr }}"
+teleport__ssh_port: 3022
+teleport__web_addr: "{{ teleport__bind_addr }}"
+teleport__web_port: 443
+teleport__tunnel_addr: "{{ teleport__bind_addr }}"
+teleport__tunnel_port: 3024
 teleport__ssh: false
-#teleport__ssh_labels: 
+#teleport__ssh_labels:
 teleport__binary_compat: false

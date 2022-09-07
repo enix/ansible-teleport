@@ -58,13 +58,13 @@
     state: "{{ teleport__enix_apt_repo_status }}"
     update_cache: yes
 
-- name: Install teleport package
-  apt:
-    package: "teleport"
-    state: present
-    update_cache: yes
-
 - name: UnHold teleport package version
   dpkg_selections:
     name: teleport
     selection: install
+
+- name: Install teleport package
+  apt:
+    package: "teleport"
+    state: latest
+    update_cache: yes

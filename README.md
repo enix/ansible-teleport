@@ -108,6 +108,11 @@ Still to do
 Changelog
 ---------
 
+### 1.3.0
+
+Add support for teleport upgrade using teleport (handler will wait for connection to be alive)
+Force removal of legacy apt repository
+Automatically upgrade teleport package if newer version available
 ### 1.2.0
 
 Add proxy bindaddr support

@@ -13,3 +13,4 @@
 - name: check restart status
   async_status:
     jid: "{{ teleport_restart.ansible_job_id }}"
+  ignore_errors: true

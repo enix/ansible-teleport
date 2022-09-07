@@ -7,4 +7,4 @@
   ignore_errors: yes
 
 - name: restart teleport
-  import_tasks: restart-teleport.yml
+  include_tasks: restart-teleport.yml

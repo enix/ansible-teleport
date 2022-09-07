@@ -4,7 +4,7 @@
 - name: reload systemd
   systemd:
     daemon_reload: yes
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: restart teleport
   include_tasks: restart-teleport.yml

@@ -1,0 +1,15 @@
+---
+
+- name: restart teleport
+  shell: "sleep 5 && service teleport restart"
+  async: 1
+  poll: 0
+  register: teleport_restart
+- name: wait for restart
+  wait_for_connection:
+    delay: 10
+    sleep: 5
+    timeout: 300
+- name: check restart status
+  async_status:
+    jid: "{{ teleport_restart.ansible_job_id }}"

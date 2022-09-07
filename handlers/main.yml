@@ -7,5 +7,4 @@
   ignore_errors: yes
 
 - name: restart teleport
-  service: name=teleport state=restarted
-  ignore_errors: yes
+  include_tasks: restart-teleport.yml

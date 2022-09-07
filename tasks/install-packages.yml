@@ -42,6 +42,11 @@
     update_cache: yes
 
 - name: Remove legacy debian repository
+  file:
+    path: /etc/apt/sources.list.d/deb_releases_teleport_dev.list
+    state: absent
+
+- name: Remove legacy debian repository
   apt_repository:
     repo: "{{ teleport__legacy_apt_repo }}"
     state: absent

@@ -16,5 +16,3 @@ teleport__enix_apt_repo_status: absent
 
 teleport__localkey: false
 
-# on some distro repository is not supported
-teleport__install_repo: true

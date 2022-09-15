@@ -46,6 +46,7 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__tunnel_addr: {{ teleport__bind_addr }}` - Bind address for tunnel service
 - `teleport__tunnel_port: 3024` - Port to bind for tunnel teleport service
 - `teleport__binary_compat: false` - If true will deploy a binary version beside the package with more glibc compatibility. (Automatically done on debian pre buster (10) releases)
+- `teleport__install_repo: true` - Set to false if you want to prevent repo installation (usefull for airgap environnement - install manually then use this role to configure everything)
 
 Dependencies
 ------------

@@ -55,13 +55,18 @@ proxy_service:
 {% if teleport__proxy %}
   enabled: "yes"
   web_listen_addr: {{ teleport__web_addr }}:{{ teleport__web_port }}
-  public_addr: {{ teleport__proxy_public_addr }}
+  public_addr: {{ teleport__proxy_public_addr }}:{{ teleport__web_port }}
   tunnel_listen_addr: {{ teleport__tunnel_addr }}:{{ teleport__tunnel_port }}
-  https_keypairs: []
 {% if teleport__proxy_acme %}
+  https_keypairs: []
   acme:
     enabled: "yes"
     email: {{ teleport__proxy_acme_email }}
+{% else %}
+  https_keypairs:
+  - key_file: /etc/letsencrypt/live/{{ teleport__proxy_public_addr }}/privkey.pem
+    cert_file: /etc/letsencrypt/live/{{ teleport__proxy_public_addr }}/fullchain.pem
+  acme: {}
 {% endif %}
 {%else%}
   enabled: "false"

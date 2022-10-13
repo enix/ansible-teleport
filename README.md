@@ -90,7 +90,7 @@ And add it to your play's roles:
             teleport__version: 10
             teleport__nodename: "toto.proxy"
             teleport__proxy: true
-            teleport__proxy_public_addr: "toto.tp.com:443"
+            teleport__proxy_public_addr: "toto.tp.com"
             teleport__proxy_acme: false
             teleport__proxy_acme_email: "test@toto.com"
             teleport__auth: true

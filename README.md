@@ -31,7 +31,7 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__node_server: ""` - Proxy server url.
 - `teleport__proxy: false` - Enable the proxy mode in teleport.
 - `teleport__proxy_public_addr: ""` - Public address the proxy expose.
-- `teleport__proxy_acme: false` - Enable ACME protocol for public certificate.
+- `teleport__proxy_acme: false` - Enable ACME protocol for public certificate. When disabled, Teleport will look for certificate in `/etc/letsencrypt/live/{{ teleport__proxy_public_addr }}`
 - `teleport__proxy_acme_email: ""` - Email for the ACME request.
 - `teleport__auth: false` - Enable teleport auth role.
 - `teleport__auth_cluster_name: ""` - Teleport auth cluster name.
@@ -108,6 +108,14 @@ Still to do
 
 Changelog
 ---------
+
+### 1.4.0
+
+Support LE certificates generated from outside teleport (ACME disabled)
+
+### 1.3.1
+
+Fix missing tailing slash on legacy debian repository
 
 ### 1.3.0
 

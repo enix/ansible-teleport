@@ -68,3 +68,5 @@
     package: "teleport"
     state: latest
     update_cache: yes
+  notify:
+    - restart teleport

@@ -19,6 +19,8 @@
     - teleport
     - tsh
     - tctl
+  notify:
+    - restart teleport
 
 - name: Create systemd override folder
   file:

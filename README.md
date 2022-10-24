@@ -109,6 +109,10 @@ And add it to your play's roles:
 Changelog
 ---------
 
+### 1.5.1
+
+Cosmetic change in teleport.yaml template to avoid unnecessary diff
+
 ### 1.5.0
 
 Support app service

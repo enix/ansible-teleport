@@ -15,4 +15,3 @@ teleport__enix_apt_repo_key: "http://enix.pages.moi.la/teleport/repository-pubke
 teleport__enix_apt_repo_status: absent
 
 teleport__localkey: false
-

@@ -72,13 +72,16 @@ proxy_service:
   enabled: "false"
 {%endif%}
 
-{#
-# {% if teleport__app %}
-# app_service:
-#   enabled: yes
-#   apps:
-#   - name: "{{NOM_DE_L'APPLI}}"
-#     uri: "https://{{IP_OU_HOSTNAME}}:{{PORT}}/"
-#     insecure_skip_verify: true  # Si le certificat présenté par l'appli est autosigné
-# {%endif%}
-#}
+
+{% if teleport__app %}
+app_service:
+  enabled: yes
+  apps:
+{% for app in teleport_applications %}
+  - name: "{{ app.name }}"
+    uri: "{{ app.uri }}"
+{% if app.skip_verify | default(false) %}
+    insecure_skip_verify: true
+{% endif %}
+{% endfor %}
+{%endif%}

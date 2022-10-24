@@ -41,6 +41,11 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__ssh_port: 3022` - Port to bind for ssh teleport service
 - `teleport__ssh: false` - Enable teleport ssh module.
 - `teleport__ssh_labels: ''` - Add labels to the ssh module (yaml format).
+- `teleport__app: false` - Enable teleport app module
+- `teleport_applications: []` - List of applications, defined as a dict with the following keys:
+  - `name` - Name of the application
+  - `uri` - URI to reverse-proxify
+  - `skip_verify: false` - Whether or not to skip certificate verification on the target URI
 - `teleport__web_addr: {{ teleport__bind_addr }}` - Bind address for web teleport service
 - `teleport__web_port: 443` - Port to bind for web teleport service
 - `teleport__tunnel_addr: {{ teleport__bind_addr }}` - Bind address for tunnel service
@@ -100,14 +105,13 @@ And add it to your play's roles:
               tenant: toto.com
 ```
 
-Still to do
------------
-
-- Manage mode configuration options (static ssl certs)
-- Add app service in proxy configuration
 
 Changelog
 ---------
+
+### 1.5.0
+
+Support app service
 
 ### 1.4.0
 

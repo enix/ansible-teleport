@@ -23,6 +23,11 @@ teleport:
   - "{{ teleport__node_server }}"
 {%endif%}
 
+{%- if teleport__diag %}
+
+  diag_addr: "{{ teleport__diag_addr}}:{{ teleport__diag_port}}"
+{%endif%}
+
 auth_service:
 {% if teleport__auth %}
   enabled: "yes"

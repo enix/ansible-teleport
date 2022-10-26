@@ -26,6 +26,9 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__agent: false` - Configure and Enable the teleport agent software.
 - `teleport__bind_addr: 0.0.0.0` - Bind address used to default all other bind address configuration
 - `teleport__nodename: {{ inventory_hostname }}` - Name the teleport agent report to it's connected proxy.
+- `teleport__diag: false` - Enable teleport HTTP monitoring endpoint.
+- `teleport__diag_addr: "127.0.0.1"` - Bind address for HTTP monitoring endpoint.
+- `teleport__diag_port: 3000` - Port to bind for HTTP monitoring endpoint.
 - `teleport__node: false` - Configure and Enable teleport node role.
 - `teleport__node_token: ""` - Token used to join the proxy.
 - `teleport__node_server: ""` - Proxy server url.
@@ -108,6 +111,10 @@ And add it to your play's roles:
 
 Changelog
 ---------
+
+### 1.6.0
+
+Add support for diag HTTP endpoint
 
 ### 1.5.2
 

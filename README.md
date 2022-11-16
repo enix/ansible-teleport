@@ -112,6 +112,10 @@ And add it to your play's roles:
 Changelog
 ---------
 
+### 1.6.1
+
+Fix duplicate diag config
+
 ### 1.6.0
 
 Add support for diag HTTP endpoint

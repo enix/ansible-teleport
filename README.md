@@ -38,6 +38,7 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__proxy_acme_email: ""` - Email for the ACME request.
 - `teleport__auth: false` - Enable teleport auth role.
 - `teleport__auth_cluster_name: ""` - Teleport auth cluster name.
+- `teleport__auth_u2f: false` - Enable U2F (old-style non-webauthn configuration)
 - `teleport__auth_addr: {{ teleport__bind_addr }}` - Bind address for auth teleport service
 - `teleport__auth_port: 3025` - Port to bind for auth teleport service
 - `teleport__ssh_addr: {{ teleport__bind_addr }}` - Bind address for ssh teleport service
@@ -111,6 +112,10 @@ And add it to your play's roles:
 
 Changelog
 ---------
+
+### 1.7.0
+
+Add support for U2F old-style (non-webauthn) configuration
 
 ### 1.6.1
 

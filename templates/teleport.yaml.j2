@@ -30,6 +30,14 @@ teleport:
 auth_service:
 {% if teleport__auth %}
   enabled: "yes"
+{% if teleport__auth_u2f %}
+  authentication:
+    second_factor: on
+    u2f:
+      app_id: https://{{ teleport__auth_cluster_name }}
+      facets:
+        - https://{{ teleport__auth_cluster_name }}
+{% endif %}
   listen_addr: {{ teleport__auth_addr }}:{{ teleport__auth_port }}
   cluster_name: {{ teleport__auth_cluster_name }}
   proxy_listener_mode: multiplex

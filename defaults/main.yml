@@ -18,6 +18,7 @@ teleport__node_token: ""
 teleport__node_server: ""
 teleport__auth: false
 teleport__auth_cluster_name: ""
+teleport__auth_u2f: false
 teleport__auth_addr: "{{ teleport__bind_addr }}"
 teleport__auth_port: 3025
 teleport__ssh_addr: "{{ teleport__bind_addr }}"

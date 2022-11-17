@@ -2,7 +2,7 @@
 
 - name: "Checking system OS"
   fail:
-    msg: "This is not a Debian/Ubuntu based distribution. Proxmox VE is not compatible"
+    msg: "This is not a Debian/Ubuntu based distribution. This role is not compatible."
   when: ansible_facts['os_family'] != "Debian"
 
 # - name: "Detecting binary compat centos 7"

@@ -3,7 +3,9 @@
 
 version: v2
 teleport:
+{% if teleport__nodename is defined %}
   nodename: {{ teleport__nodename }}
+{% endif %}
 
 {% if teleport__proxy %}
   data_dir: /var/lib/teleport

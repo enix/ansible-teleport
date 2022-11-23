@@ -25,7 +25,7 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__version: 8` - Major Version / branch of the binary to install and hold, default install repo version 8. Available now: 8, 9, 10, 11.
 - `teleport__agent: false` - Configure and Enable the teleport agent software.
 - `teleport__bind_addr: 0.0.0.0` - Bind address used to default all other bind address configuration
-- `teleport__nodename: {{ inventory_hostname }}` - Name the teleport agent report to it's connected proxy.
+- `teleport__nodename` - Name the teleport agent reports to its connected proxy. If undefined, no nodename will be configured and Teleport will default to the machine's hostname.
 - `teleport__diag: false` - Enable teleport HTTP monitoring endpoint.
 - `teleport__diag_addr: "127.0.0.1"` - Bind address for HTTP monitoring endpoint.
 - `teleport__diag_port: 3000` - Port to bind for HTTP monitoring endpoint.
@@ -112,6 +112,10 @@ And add it to your play's roles:
 
 Changelog
 ---------
+
+### 1.8.0
+
+Make nodename optional (Teleport will default to the hostname)
 
 ### 1.7.1
 

@@ -4,7 +4,6 @@
 teleport__version: 8
 # teleport__agent enabled / no. disable by default
 teleport__agent: false
-teleport__nodename: "{{ inventory_hostname }}"
 teleport__diag: false
 teleport__diag_addr: "127.0.0.1"
 teleport__diag_port: 3000

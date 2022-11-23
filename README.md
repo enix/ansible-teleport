@@ -113,6 +113,11 @@ And add it to your play's roles:
 Changelog
 ---------
 
+### 1.7.1
+
+Fix error message when target is not debian-like
+Use new package signature check method when applicable, and cleanup repository management
+
 ### 1.7.0
 
 Add support for U2F old-style (non-webauthn) configuration

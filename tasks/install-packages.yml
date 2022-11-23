@@ -9,59 +9,62 @@
 - name: Register repository signing key
   apt_key:
     url: "{{ teleport__apt_repo_key }}"
-  when: not teleport__localkey
+  when: teleport__apt_signing_legacy
 
-- name: Register local repository signing key
-  apt_key:
-    data: "{{ lookup('file', 'teleport-pubkey.asc') }}"
-  when: teleport__localkey
+- name: Ensire /usr/share/keyrings/ exists
+  file:
+    path: "/usr/share/keyrings"
+    state: directory
+    mode: '0755'
+  when: not teleport__apt_signing_legacy
 
-# - name: Register Enix.io repository signing key
-#   apt_key:
-#     url: "{{ teleport__enix_apt_repo_key }}"
-#   when: not teleport__localkey
+- name: Download repository signing key
+  ansible.builtin.get_url:
+    url: "{{ teleport__apt_repo_key }}"
+    dest: /usr/share/keyrings/teleport-archive-keyring.asc
+    mode: '0644'
+    force: no
+  when: not teleport__apt_signing_legacy
 
-# - name: Register local Enix.io repository signing key
-#   apt_key:
-#     data: "{{ lookup('file', 'enix-teleport-pubkey.asc') }}"
-#   when: teleport__localkey
-
-- name: Install Amazon Root CA
-  copy:
-    src: AmazonRootCA1.pem
-    dest: /etc/ssl/certs
-    mode: 0444
+- name: Add or update Teleport's APT repository
+  ansible.builtin.template:
+    dest: "/etc/apt/sources.list.d/teleport.list"
+    src: "teleport.list.j2"
     owner: root
     group: root
-  when: teleport__localkey
+    mode: 0444
+  register: apt_repo_template
 
-- name: Add debian repository
-  apt_repository:
-    repo: "{{ teleport__apt_repo }}"
-    state: "{{ teleport__apt_repo_status }}"
-    update_cache: yes
-
-- name: Remove legacy debian repository
+- name: Remove legacy debian repository drop-in files
   file:
-    path: /etc/apt/sources.list.d/deb_releases_teleport_dev.list
+    path: "{{ item }}"
     state: absent
+  loop:
+    - /etc/apt/sources.list.d/deb_releases_teleport_dev.list
+    - /etc/apt/sources.list.d/apt_releases_teleport_dev_ubuntu.list
+    - /etc/apt/sources.list.d/apt_releases_teleport_dev_debian.list
 
-- name: Remove legacy debian repository
+- name: Remove legacy debian repository from /etc/apt/sources.list
   apt_repository:
     repo: "{{ teleport__legacy_apt_repo }}"
     state: absent
     update_cache: yes
 
-- name: Add Enix.io debian repository
+- name: Remove Enix.io debian repository
   apt_repository:
     repo: "{{ teleport__enix_apt_repo }}"
-    state: "{{ teleport__enix_apt_repo_status }}"
+    state: absent
     update_cache: yes
 
 - name: UnHold teleport package version
   dpkg_selections:
     name: teleport
     selection: install
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: yes
+  when: apt_repo_template.changed
 
 - name: Install teleport package
   apt:

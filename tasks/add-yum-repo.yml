@@ -1,0 +1,9 @@
+---
+- name: Add or update Teleport's YUM repository
+  yum_repository:
+    name: teleport
+    description: Gravitational Teleport packages
+    baseurl: "{{ teleport__yum_repo }}"
+    gpgkey: "{{ teleport__yum_repo_key }}"
+    state: present
+    enabled: yes

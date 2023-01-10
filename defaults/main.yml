@@ -1,6 +1,7 @@
 ---
 # defaults file for teleport
 
+teleport__package_name: teleport
 teleport__version: 8
 # teleport__agent enabled / no. disable by default
 teleport__agent: false
@@ -10,6 +11,7 @@ teleport__diag_port: 3000
 teleport__proxy: false
 teleport__proxy_public_addr: ""
 teleport__bind_addr: "0.0.0.0"
+teleport__proxy_self_signed: false
 teleport__proxy_acme: false
 teleport__proxy_acme_email: ""
 teleport__node: false

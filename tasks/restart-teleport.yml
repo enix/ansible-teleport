@@ -1,16 +1,18 @@
 ---
 
-- name: restart teleport
-  shell: "sleep 5 && service teleport restart"
-  async: 1
-  poll: 0
-  register: teleport_restart
-- name: wait for restart
-  wait_for_connection:
-    delay: 10
-    sleep: 5
-    timeout: 300
-- name: check restart status
-  async_status:
-    jid: "{{ teleport_restart.ansible_job_id }}"
-  ignore_errors: true
+- name: Restart teleport
+  service:
+    name: teleport
+    state: restarted
+
+- name: collect facts about system services
+  service_facts:
+  register: services_state
+
+- name: Check if teleport failed to restart
+  fail:
+    msg: "Teleport service failed to restart"
+  when: services_state.ansible_facts.services["teleport.service"]["status"] == "failed"
+
+
+

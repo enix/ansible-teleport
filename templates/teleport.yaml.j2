@@ -76,6 +76,9 @@ proxy_service:
   acme:
     enabled: "yes"
     email: {{ teleport__proxy_acme_email }}
+{% elif teleport__proxy_self_signed %}
+  https_keypairs: []
+  acme: {}
 {% else %}
   https_keypairs:
   - key_file: /etc/letsencrypt/live/{{ teleport__proxy_public_addr }}/privkey.pem

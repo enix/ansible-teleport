@@ -1,6 +1,9 @@
 ---
 # vars file for teleport
 
+teleport__install_repo_apt: false
+teleport__install_repo_yum: false
+
 teleport__apt_signing_legacy: false
 
 teleport__apt_repo: "https://apt.releases.teleport.dev/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable/v{{ teleport__version }}"
@@ -8,7 +11,7 @@ teleport__apt_repo_key: "https://apt.releases.teleport.dev/gpg"
 
 teleport__legacy_apt_repo: "deb https://deb.releases.teleport.dev/ stable main"
 
-teleport__binary_compat_centos7_url: "https://get.gravitational.com/teleport-v8.3.8-linux-amd64-centos7-bin.tar.gz"
-teleport__binary_compat_centos6_url: "https://get.gravitational.com/teleport-v8.3.8-linux-amd64-centos6-bin.tar.gz"
+teleport__yum_repo: https://rpm.releases.teleport.dev/
+teleport__yum_repo_key: https://rpm.releases.teleport.dev/RPM-GPG-KEY-teleport
 
 teleport__enix_apt_repo: "deb http://enix.pages.moi.la/teleport stable 8"

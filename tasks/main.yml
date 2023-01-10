@@ -11,6 +11,11 @@
     teleport__package_name: "{{ teleport__package_name }}-{{ teleport__version }}*"
   when: ansible_facts['os_family'] == "RedHat"
 
+- name: "Check if OS is supported"
+  fail: 
+    msg: "Your OS is currently not supported"
+  when: not teleport__install_repo_apt and not teleport__install_repo_yum
+
 - name: "Detecting if we should use legacy APT signing"
   set_fact:
     teleport__apt_signing_legacy: true

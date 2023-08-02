@@ -10,6 +10,7 @@
     backup: true
   notify:
     - restart teleport
+  tags: config
 
 - name: Enable teleport
   service:

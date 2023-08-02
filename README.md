@@ -113,6 +113,10 @@ And add it to your play's roles:
 Changelog
 ---------
 
+### 1.8.1
+
+Add `config` Ansible tag
+
 ### 1.8.0
 
 Make nodename optional (Teleport will default to the hostname)

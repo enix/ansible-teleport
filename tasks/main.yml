@@ -33,3 +33,4 @@
 
 - include_tasks: configure.yml
   when: teleport__agent
+  tags: config

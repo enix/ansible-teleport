@@ -113,6 +113,11 @@ And add it to your play's roles:
 Changelog
 ---------
 
+### 1.8.2
+
+Support VyOS
+Allow overwriting `ansible_distribution` in the APT repository URL
+
 ### 1.8.1
 
 Add `config` Ansible tag

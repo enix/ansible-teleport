@@ -1,9 +1,13 @@
+---
+
 variables:
   GITHUB_REPO: $CI_PROJECT_NAME
   GITHUB_GROUP: enix
   ANSIBLE_INVENTORY: "tests/inventory"
   PYTHONUNBUFFERED: "1"
   ANSIBLE_FORCE_COLOR: "true"
+  ANSIBLE_CALLBACK_RESULT_FORMAT: "yaml"
+  ANSIBLE_DISPLAY_SKIPPED_HOSTS: "false"
   PY_COLORS: "1"
 
 molecule:

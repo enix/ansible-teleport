@@ -9,7 +9,7 @@ variables:
 molecule:
   stage: test
   services:
-    - docker:dind
+    - docker:24-dind
   variables:
       DOCKER_BUILDKIT: 1
       DOCKER_HOST: tcp://docker:2376
@@ -24,7 +24,7 @@ molecule:
       python3 python3-dev py3-pip gcc git curl build-base
       autoconf automake py3-cryptography linux-headers
       musl-dev libffi-dev openssl-dev openssh rsync
-    - python3 -m pip install ansible molecule[docker] ansible-lint yamllint
+    - python3 -m pip install ansible molecule ansible-lint yamllint molecule-docker
     - docker info
     - python3 --version
     - ansible --version

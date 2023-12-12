@@ -43,7 +43,7 @@
 - hosts: test
   roles:
     - role: '../../.'
-      teleport__version: 8
+      # teleport__version: 8
       teleport__agent: true
       teleport__nodename: "test.node"
       teleport__proxy: true

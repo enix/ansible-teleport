@@ -114,6 +114,12 @@ And add it to your play's roles:
 Changelog
 ---------
 
+### 1.9.0
+
+Fix issue with package UnHold
+Change default version to 10
+Added `molecule` tests
+
 ### 1.8.2
 
 Support VyOS

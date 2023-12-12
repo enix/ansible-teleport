@@ -51,6 +51,10 @@ debian-bullseye:
   image: registry.gitlab.com/lcaflc/ansiblecheck:debian-bullseye
   <<: *ansible_test
 
+debian-bookworm:
+  image: registry.gitlab.com/lcaflc/ansiblecheck:debian-bookworm
+  <<: *ansible_test
+
 ubuntu-bionic:
   image: registry.gitlab.com/lcaflc/ansiblecheck:ubuntu-bionic
   <<: *ansible_test

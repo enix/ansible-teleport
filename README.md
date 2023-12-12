@@ -16,6 +16,7 @@ Supported targets:
 - Debian 9 "Stretch"
 - Debian 10 "Buster"
 - Debian 11 "Bullseye"
+- Debian 12 "Bookworm"
 
 Role Variables
 --------------

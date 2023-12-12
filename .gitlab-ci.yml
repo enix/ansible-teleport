@@ -105,7 +105,7 @@ ubuntu-jammy:
 
 importgalaxy:
   stage: deploy
-  image: registry.gitlab.com/lcaflc/ansiblecheck:debian-bullseye
+  image: registry.gitlab.com/lcaflc/ansiblecheck:debian-bookworm
   only: 
     - main
     - master

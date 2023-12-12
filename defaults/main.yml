@@ -1,7 +1,7 @@
 ---
 # defaults file for teleport
 
-teleport__version: 8
+teleport__version: 10
 # teleport__agent enabled / no. disable by default
 teleport__agent: false
 teleport__diag: false

@@ -23,7 +23,7 @@ Role Variables
 
 This roles comes preloaded with almost every available default. You can override each one in your hosts/group vars, in your inventory, or in your play. See the annotated defaults in `defaults/main.yml` for help in configuration. All provided variables start with `teleport__`.
 
-- `teleport__version: 8` - Major Version / branch of the binary to install and hold, default install repo version 8. Available now: 8, 9, 10, 11.
+- `teleport__version: 10` - Major Version / branch of the binary to install and hold, default install repo version 8. Available now: 8, 9, 10, 11.
 - `teleport__agent: false` - Configure and Enable the teleport agent software.
 - `teleport__bind_addr: 0.0.0.0` - Bind address used to default all other bind address configuration
 - `teleport__nodename` - Name the teleport agent reports to its connected proxy. If undefined, no nodename will be configured and Teleport will default to the machine's hostname.

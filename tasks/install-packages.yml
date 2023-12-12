@@ -56,10 +56,13 @@
     state: absent
     update_cache: yes
 
+# Task used for some migration where package was in Hold status.
+# We allow to fail when package is not installed.
 - name: UnHold teleport package version
   dpkg_selections:
     name: teleport
     selection: install
+  ignore_errors: True
 
 - name: Update APT cache
   ansible.builtin.apt:

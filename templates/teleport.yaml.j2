@@ -57,6 +57,11 @@ ssh_service:
     {{ label_id }}: {{ value }}
 {% endfor %}
 {% endif %}
+{% if teleport__ssh_pam_enabled %}
+  pam:
+    enabled: true
+    service_name: "{{ teleport__ssh_pam_service }}"
+{% endif %}
   commands:
   - name: hostname
     command: [hostname]

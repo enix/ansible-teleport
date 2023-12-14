@@ -46,6 +46,8 @@ This roles comes preloaded with almost every available default. You can override
 - `teleport__ssh_port: 3022` - Port to bind for ssh teleport service
 - `teleport__ssh: false` - Enable teleport ssh module.
 - `teleport__ssh_labels: ''` - Add labels to the ssh module (yaml format).
+- `teleport__ssh_pam_enabled: true` - Enable PAM.
+- `teleport__ssh_pam_service: 'sshd'` - PAM service name.
 - `teleport__app: false` - Enable teleport app module
 - `teleport_applications: []` - List of applications, defined as a dict with the following keys:
   - `name` - Name of the application
@@ -113,6 +115,9 @@ And add it to your play's roles:
 
 Changelog
 ---------
+### 1.9.1
+
+Add support for PAM
 
 ### 1.9.0
 

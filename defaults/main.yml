@@ -22,6 +22,8 @@ teleport__auth_addr: "{{ teleport__bind_addr }}"
 teleport__auth_port: 3025
 teleport__ssh_addr: "{{ teleport__bind_addr }}"
 teleport__ssh_port: 3022
+teleport__ssh_pam_enabled: true
+teleport__ssh_pam_service: "sshd"
 teleport__app: false
 teleport__applications: []
 teleport__web_addr: "{{ teleport__bind_addr }}"

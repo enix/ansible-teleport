@@ -2,7 +2,7 @@
 
 - name: restart teleport
   shell: "sleep 5 && service teleport restart"
-  async: 1
+  async: "{{ not ansible_check_mode }}"
   poll: 0
   register: teleport_restart
 - name: wait for restart
@@ -14,3 +14,4 @@
   async_status:
     jid: "{{ teleport_restart.ansible_job_id }}"
   ignore_errors: true
+  when: not ansible_check_mode

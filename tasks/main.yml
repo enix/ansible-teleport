@@ -5,25 +5,11 @@
     fail_msg: "{{ ansible_os_family }} is not supported by the role unless binary compat mode is used."
   when: not (teleport__binary_compat)
 
-# - name: "Detecting binary compat centos 7"
-#   set_fact:
-#     teleport__binary_compat: true
-#     teleport__binary_compat_url: "{{ teleport__binary_compat_centos7_url }}"
-#   when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "9")
-
 - name: "Detecting if we should use legacy APT signing"
   set_fact:
     teleport__apt_signing_legacy: true
   when: (ansible_distribution == "Debian" and ansible_distribution_version is version("9", "<")) or
         (ansible_distribution == "Ubuntu" and ansible_distribution_version is version("20.04", '<'))
-
-- name: "Detecting binary compat centos 6"
-  set_fact:
-    teleport__binary_compat: true
-    teleport__binary_compat_url: "{{ teleport__binary_compat_centos6_url }}"
-    teleport__install_repo: false
-  when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "8") or
-        (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
 
 - include_tasks: install-packages.yml
   when: teleport__install_repo

@@ -8,7 +8,8 @@ teleport__apt_repo_key: "https://apt.releases.teleport.dev/gpg"
 
 teleport__legacy_apt_repo: "deb https://deb.releases.teleport.dev/ stable main"
 
-teleport__binary_compat_centos7_url: "https://get.gravitational.com/teleport-v{{ teleport__binary_compat_version }}-linux-amd64-centos7-bin.tar.gz"
-teleport__binary_compat_centos6_url: "https://get.gravitational.com/teleport-v{{ teleport__binary_compat_version }}-linux-amd64-centos6-bin.tar.gz"
+teleport__binary_compat_url: "https://get.gravitational.com/teleport-v{{ teleport__binary_compat_version }}-linux-amd64\
+                              {{ '-centos' ~ ansible_distribution_major_version if ((ansible_os_family | lower == 'redhat') and
+                              (ansible_distribution_major_version is version('7', '<='))) else '' }}-bin.tar.gz"
 
 teleport__enix_apt_repo: "deb http://enix.pages.moi.la/teleport stable 8"

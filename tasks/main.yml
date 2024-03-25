@@ -1,9 +1,9 @@
 ---
-
 - name: "Checking system OS"
-  fail:
-    msg: "This is not a Debian/Ubuntu based distribution. This role is not compatible."
-  when: not (ansible_facts['os_family'] == "Debian" or ansible_facts['os_family'] == "VyOS")
+  ansible.builtin.assert:
+    that: ansible_os_family | lower is in ['debian', 'vyos']
+    fail_msg: "{{ ansible_os_family }} is not supported by the role unless binary compat mode is used."
+  when: not (teleport__binary_compat)
 
 # - name: "Detecting binary compat centos 7"
 #   set_fact:

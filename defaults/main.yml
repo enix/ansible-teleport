@@ -33,6 +33,7 @@ teleport__tunnel_port: 3024
 teleport__ssh: false
 #teleport__ssh_labels:
 teleport__binary_compat: false
+teleport__binary_compat_version: 8.3.8
 
 # on some distro repository is not supported
 teleport__install_repo: true

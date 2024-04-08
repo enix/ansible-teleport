@@ -1,4 +1,8 @@
 ---
+- name: "Collect package facts to check if Teleport is installed"
+  ansible.builtin.package_facts:
+    manager: auto
+
 - name: "Install APT https transport"
   ansible.builtin.apt:
     package: apt-transport-https
@@ -56,12 +60,11 @@
     update_cache: yes
 
 # Task used for some migration where package was in Hold status.
-# We allow to fail when package is not installed.
 - name: "UnHold Teleport package version"
   ansible.builtin.dpkg_selections:
     name: teleport
     selection: install
-  ignore_errors: True
+  when: "'teleport' in ansible_facts.packages"
 
 - name: "Update APT cache"
   ansible.builtin.apt:

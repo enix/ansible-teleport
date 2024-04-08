@@ -1,23 +1,23 @@
 ---
-- name: Install APT https transport
+- name: "Install APT https transport"
   ansible.builtin.apt:
     package: apt-transport-https
     update_cache: yes
     state: present
 
-- name: Register repository signing key
+- name: "Register repository signing key"
   ansible.builtin.apt_key:
     url: "{{ teleport__apt_repo_key }}"
   when: teleport__apt_signing_legacy
 
-- name: Ensire /usr/share/keyrings/ exists
+- name: "Ensure /usr/share/keyrings/ exists"
   ansible.builtin.file:
     path: "/usr/share/keyrings"
     state: directory
     mode: '0755'
   when: not teleport__apt_signing_legacy
 
-- name: Download repository signing key
+- name: "Download repository signing key"
   ansible.builtin.get_url:
     url: "{{ teleport__apt_repo_key }}"
     dest: /usr/share/keyrings/teleport-archive-keyring.asc
@@ -25,7 +25,7 @@
     force: no
   when: not teleport__apt_signing_legacy
 
-- name: Add or update Teleport's APT repository
+- name: "Add or update Teleport's APT repository"
   ansible.builtin.template:
     dest: "/etc/apt/sources.list.d/teleport.list"
     src: "teleport.list.j2"
@@ -34,7 +34,7 @@
     mode: 0444
   register: apt_repo_template
 
-- name: Remove legacy debian repository drop-in files
+- name: "Remove legacy debian repository drop-in files"
   ansible.builtin.file:
     path: "{{ item }}"
     state: absent
@@ -43,13 +43,13 @@
     - /etc/apt/sources.list.d/apt_releases_teleport_dev_ubuntu.list
     - /etc/apt/sources.list.d/apt_releases_teleport_dev_debian.list
 
-- name: Remove legacy debian repository from /etc/apt/sources.list
+- name: "Remove legacy debian repository from /etc/apt/sources.list"
   ansible.builtin.apt_repository:
     repo: "{{ teleport__legacy_apt_repo }}"
     state: absent
     update_cache: yes
 
-- name: Remove Enix.io debian repository
+- name: "Remove Enix.io debian repository"
   ansible.builtin.apt_repository:
     repo: "{{ teleport__enix_apt_repo }}"
     state: absent
@@ -57,18 +57,18 @@
 
 # Task used for some migration where package was in Hold status.
 # We allow to fail when package is not installed.
-- name: UnHold teleport package version
+- name: "UnHold Teleport package version"
   ansible.builtin.dpkg_selections:
     name: teleport
     selection: install
   ignore_errors: True
 
-- name: Update APT cache
+- name: "Update APT cache"
   ansible.builtin.apt:
     update_cache: yes
   when: apt_repo_template.changed
 
-- name: Install teleport package
+- name: "Install Teleport package"
   ansible.builtin.apt:
     package: "teleport"
     state: latest

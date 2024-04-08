@@ -24,12 +24,15 @@
   when: (ansible_distribution == "Debian" and ansible_distribution_major_version == "8") or
         (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
 
-- ansible.builtin.include_tasks: install-packages.yml
+- name: "Install Teleport from package"
+  ansible.builtin.include_tasks: install-packages.yml
   when: teleport__install_repo
 
-- ansible.builtin.include_tasks: install-binary-compat.yml
+- name: "Install Teleport binary"
+  ansible.builtin.include_tasks: install-binary-compat.yml
   when: teleport__binary_compat
 
-- ansible.builtin.include_tasks: configure.yml
+- name: "Configure Teleport"
+  ansible.builtin.include_tasks: configure.yml
   when: teleport__agent
   tags: config

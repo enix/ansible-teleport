@@ -1,8 +1,10 @@
 ---
-- name: reload systemd
+- name: "Reload systemd"
   ansible.builtin.systemd_service:
     daemon_reload: yes
   ignore_errors: true
+  listen: "reload systemd"
 
-- name: restart teleport
+- name: "Restart Teleport"
   ansible.builtin.include_tasks: restart-teleport.yml
+  listen: "restart teleport"

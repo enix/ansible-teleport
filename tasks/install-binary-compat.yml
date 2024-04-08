@@ -1,12 +1,12 @@
 ---
-- name: Download binary release
+- name: "Download binary release"
   ansible.builtin.unarchive:
     src: "{{ teleport__binary_compat_url }}"
     dest: /tmp
     remote_src: yes
     validate_certs: false
 
-- name: Copy binaries
+- name: "Copy binaries"
   ansible.builtin.copy:
     dest: "/usr/local/bin/{{ item }}.compat"
     src: "/tmp/teleport/{{ item }}"
@@ -21,12 +21,12 @@
   notify:
     - restart teleport
 
-- name: Create systemd override folder
+- name: "Create systemd override folder"
   ansible.builtin.file:
     path: "/etc/systemd/system/teleport.service.d"
     state: directory
 
-- name: Override systemd configuration
+- name: "Override systemd configuration"
   ansible.builtin.template:
     dest: "/etc/systemd/system/teleport.service.d/override.conf"
     src: "teleport.override.conf.j2"

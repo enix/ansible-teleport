@@ -1,5 +1,5 @@
 ---
-- name: Configure teleport
+- name: "Configure Teleport"
   ansible.builtin.template:
     dest: /etc/teleport.yaml
     src: teleport.yaml.j2
@@ -11,7 +11,7 @@
     - restart teleport
   tags: config
 
-- name: Enable teleport
+- name: "Enable Teleport"
   ansible.builtin.service:
     name: teleport
     state: started

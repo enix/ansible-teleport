@@ -1,10 +1,8 @@
 ---
-# handlers file for teleport
-
 - name: reload systemd
-  systemd:
+  ansible.builtin.systemd_service:
     daemon_reload: yes
   ignore_errors: true
 
 - name: restart teleport
-  include_tasks: restart-teleport.yml
+  ansible.builtin.include_tasks: restart-teleport.yml

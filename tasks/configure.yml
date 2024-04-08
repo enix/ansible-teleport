@@ -1,7 +1,6 @@
 ---
-
 - name: Configure teleport
-  template:
+  ansible.builtin.template:
     dest: /etc/teleport.yaml
     src: teleport.yaml.j2
     owner: root
@@ -13,7 +12,7 @@
   tags: config
 
 - name: Enable teleport
-  service:
+  ansible.builtin.service:
     name: teleport
     state: started
     enabled: true

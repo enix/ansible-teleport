@@ -1,18 +1,17 @@
 ---
-
 - name: Install APT https transport
-  apt:
+  ansible.builtin.apt:
     package: apt-transport-https
     update_cache: yes
     state: present
 
 - name: Register repository signing key
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ teleport__apt_repo_key }}"
   when: teleport__apt_signing_legacy
 
 - name: Ensire /usr/share/keyrings/ exists
-  file:
+  ansible.builtin.file:
     path: "/usr/share/keyrings"
     state: directory
     mode: '0755'
@@ -36,7 +35,7 @@
   register: apt_repo_template
 
 - name: Remove legacy debian repository drop-in files
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: absent
   loop:
@@ -45,13 +44,13 @@
     - /etc/apt/sources.list.d/apt_releases_teleport_dev_debian.list
 
 - name: Remove legacy debian repository from /etc/apt/sources.list
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ teleport__legacy_apt_repo }}"
     state: absent
     update_cache: yes
 
 - name: Remove Enix.io debian repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ teleport__enix_apt_repo }}"
     state: absent
     update_cache: yes
@@ -59,7 +58,7 @@
 # Task used for some migration where package was in Hold status.
 # We allow to fail when package is not installed.
 - name: UnHold teleport package version
-  dpkg_selections:
+  ansible.builtin.dpkg_selections:
     name: teleport
     selection: install
   ignore_errors: True
@@ -70,7 +69,7 @@
   when: apt_repo_template.changed
 
 - name: Install teleport package
-  apt:
+  ansible.builtin.apt:
     package: "teleport"
     state: latest
     update_cache: yes

@@ -1,17 +1,18 @@
 ---
-
 - name: restart teleport
-  shell: "sleep 5 && service teleport restart"
+  ansible.builtin.shell: "sleep 5 && service teleport restart"
   async: "{{ not ansible_check_mode }}"
   poll: 0
   register: teleport_restart
+
 - name: wait for restart
-  wait_for_connection:
+  ansible.builtin.wait_for_connection:
     delay: 10
     sleep: 5
     timeout: 300
+
 - name: check restart status
-  async_status:
+  ansible.builtin.async_status:
     jid: "{{ teleport_restart.ansible_job_id }}"
   ignore_errors: true
   when: not ansible_check_mode

@@ -25,6 +25,7 @@
   ansible.builtin.file:
     path: "/etc/systemd/system/teleport.service.d"
     state: directory
+    mode: 0755
 
 - name: "Override systemd configuration"
   ansible.builtin.template:

@@ -29,7 +29,7 @@ platforms:
 provisioner:
   name: ansible
   options:
-   vvv: true
+    vvv: true
 verifier:
   name: ansible
 lint: |

@@ -24,8 +24,8 @@
       ansible.builtin.file:
         path: /etc/apt/sources.list.d/backports.list
         state: absent
-      when: 
-        - ansible_distribution == "Debian" 
+      when:
+        - ansible_distribution == "Debian"
         - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "9"
 
     - name: "Apt configuration"
@@ -33,15 +33,14 @@
         content: "Acquire::Check-Valid-Until false;"
         dest: /etc/apt/apt.conf.d/10-nocheckvalid
         mode: 0444
-      when: 
+      when:
         - ansible_distribution == "Debian"
         - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "9"
 
     - name: "Install depends"
       ansible.builtin.apt:
-        name: [gnupg]
+        name: gnupg
         state: present
-      ignore_errors: yes
 
 - name: "Run test"
   hosts: test

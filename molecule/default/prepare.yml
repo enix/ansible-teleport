@@ -3,10 +3,10 @@
   hosts: all
 
   tasks:
-  - name: Install depends
-    ansible.builtin.apt:
-      name:
-        - gnupg
-        - locales
-      state: present
-      update_cache: yes
+    - name: Install depends
+      ansible.builtin.apt:
+        name:
+          - gnupg
+          - locales
+        state: present
+        update_cache: true

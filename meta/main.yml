@@ -1,3 +1,4 @@
+---
 galaxy_info:
   role_name: teleport
   namespace: enix
@@ -10,19 +11,19 @@ galaxy_info:
   min_ansible_version: "6.0"
 
   platforms:
-  - name: Ubuntu
-    versions:
-    - bionic
-    - focal
-    - jammy
-  - name: Debian
-    versions:
-    - wheezy
-    - jessie
-    - stretch
-    - buster
-    - bullseye
-    - bookworm
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - jammy
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
+        - buster
+        - bullseye
+        - bookworm
 
   galaxy_tags:
     - teleport

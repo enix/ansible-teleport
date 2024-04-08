@@ -1,5 +1,4 @@
 ---
-
 variables:
   GITHUB_REPO: $CI_PROJECT_NAME
   GITHUB_GROUP: enix
@@ -15,12 +14,12 @@ molecule:
   services:
     - docker:24-dind
   variables:
-      DOCKER_BUILDKIT: 1
-      DOCKER_HOST: tcp://docker:2376
-      DOCKER_TLS_CERTDIR: "/certs"
-      DOCKER_TLS_VERIFY: 1
-      DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
-      DOCKER_DRIVER: overlay2
+    DOCKER_BUILDKIT: 1
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+    DOCKER_DRIVER: overlay2
 
   image: docker:24-dind
   before_script:
@@ -34,7 +33,7 @@ molecule:
     - ansible --version
     - ansible-lint --version
     - yamllint --version
-    - molecule --version  
+    - molecule --version
 
   script:
     - molecule test --all -- -vv
@@ -44,12 +43,12 @@ molecule:
 .ansible_test_template: &ansible_test
   script:
     - ansible --version
-# Run linters. Does not fail if no errors reported
+    # Run linters. Does not fail if no errors reported
     - ansible-lint --force-color . || true
     - yamllint -f colored . || true
     - ansible localhost -m setup
-# Uncomment if your role have depends
-#    - ansible-galaxy install -v -r requirements.yml
+    # Uncomment if your role have depends
+    #    - ansible-galaxy install -v -r requirements.yml
     - ansible-playbook tests/test.yml --syntax-check
     - ansible-playbook -vvv --connection=local tests/test.yml
     # - idempotence=$(mktemp)
@@ -61,7 +60,7 @@ molecule:
     #   || (echo 'Idempotence test: fail' && exit 1)
 # This part is used to check role run.
 # Add your own tests depending on your $ROLE
-    # - echo "=======> Starting output tests"
+# - echo "=======> Starting output tests"
 
 # We build using (ansiblecheck)[https://hub.docker.com/r/ansiblecheck/ansiblecheck/]
 # images It provide a wide variety of OS container images to test with.
@@ -106,11 +105,11 @@ ubuntu-jammy:
 importgalaxy:
   stage: deploy
   image: registry.gitlab.com/lcaflc/ansiblecheck:debian-bookworm
-  only: 
+  only:
     - main
     - master
     - tags
-#  when: on_success
+  #  when: on_success
   before_script:
     - ansible --version
   script:
@@ -119,8 +118,8 @@ importgalaxy:
 # Trigger rebuild of enix install scripts
 enixinstall:
   stage: deploy
-  only: 
+  only:
     - tags
-  trigger: 
+  trigger:
     project: enix/install
     strategy: depend

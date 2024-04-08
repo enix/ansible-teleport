@@ -6,7 +6,7 @@
 - name: "Install APT https transport"
   ansible.builtin.apt:
     package: apt-transport-https
-    update_cache: yes
+    update_cache: true
     state: present
 
 - name: "Register repository signing key"
@@ -26,7 +26,6 @@
     url: "{{ teleport__apt_repo_key }}"
     dest: /usr/share/keyrings/teleport-archive-keyring.asc
     mode: '0644'
-    force: no
   when: not teleport__apt_signing_legacy
 
 - name: "Add or update Teleport's APT repository"
@@ -51,13 +50,13 @@
   ansible.builtin.apt_repository:
     repo: "{{ teleport__legacy_apt_repo }}"
     state: absent
-    update_cache: yes
+    update_cache: true
 
 - name: "Remove Enix.io debian repository"
   ansible.builtin.apt_repository:
     repo: "{{ teleport__enix_apt_repo }}"
     state: absent
-    update_cache: yes
+    update_cache: true
 
 # Task used for some migration where package was in Hold status.
 - name: "UnHold Teleport package version"
@@ -68,13 +67,13 @@
 
 - name: "Update APT cache"
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
   when: apt_repo_template.changed
 
 - name: "Install Teleport package"
   ansible.builtin.apt:
     package: "teleport"
     state: latest
-    update_cache: yes
+    update_cache: true
   notify:
     - restart teleport

@@ -31,7 +31,7 @@ teleport__web_port: 443
 teleport__tunnel_addr: "{{ teleport__bind_addr }}"
 teleport__tunnel_port: 3024
 teleport__ssh: false
-#teleport__ssh_labels:
+# teleport__ssh_labels:
 teleport__binary_compat: false
 
 # on some distro repository is not supported

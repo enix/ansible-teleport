@@ -29,13 +29,10 @@
   when: not teleport__apt_signing_legacy
 
 - name: "Add or update Teleport's APT repository"
-  ansible.builtin.template:
-    dest: "/etc/apt/sources.list.d/teleport.list"
-    src: "teleport.list.j2"
-    owner: root
-    group: root
-    mode: 0444
-  register: apt_repo_template
+  ansible.builtin.apt_repository:
+    repo: deb {% if not teleport__apt_signing_legacy %}[signed-by=/usr/share/keyrings/teleport-archive-keyring.asc]{% endif %} {{ teleport__apt_repo }}
+    filename: teleport
+    update_cache: true
 
 - name: "Remove legacy debian repository drop-in files"
   ansible.builtin.file:
@@ -64,11 +61,6 @@
     name: teleport
     selection: install
   when: "'teleport' in ansible_facts.packages"
-
-- name: "Update APT cache"
-  ansible.builtin.apt:
-    update_cache: true
-  when: apt_repo_template.changed
 
 - name: "Install Teleport package"
   ansible.builtin.apt:

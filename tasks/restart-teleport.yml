@@ -1,6 +1,9 @@
 ---
 - name: "Restart Teleport"
-  ansible.builtin.shell: "sleep 5 && service teleport restart"
+  ansible.builtin.service:
+    name: teleport
+    state: restarted
+    enabled: true
   async: "{{ not ansible_check_mode }}"
   poll: 0
   register: teleport_restart

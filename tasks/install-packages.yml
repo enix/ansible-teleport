@@ -65,7 +65,8 @@
 - name: "Install Teleport package"
   ansible.builtin.apt:
     package: "teleport"
-    state: latest
+    only_upgrade: "{{ true if 'teleport' in ansible_facts.packages else omit }}"
+    state: present
     update_cache: true
   notify:
     - restart teleport

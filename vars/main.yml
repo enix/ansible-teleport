@@ -3,7 +3,7 @@
 
 teleport__apt_signing_legacy: false
 
-teleport__apt_repo: "https://apt.releases.teleport.dev/{{ teleport__ansible_distribution | default(ansible_distribution) | lower }} {{ ansible_distribution_release }} stable/v{{ teleport__version }}"
+teleport__apt_repo: "https://apt.releases.teleport.dev/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable/v{{ teleport__version }}"
 teleport__apt_repo_key: "https://apt.releases.teleport.dev/gpg"
 
 teleport__legacy_apt_repo: "deb https://deb.releases.teleport.dev/ stable main"

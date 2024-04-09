@@ -3,8 +3,8 @@ enix.teleport
 
 A role for deploying and configuring [teleport](https://goteleport.com) and extensions on unix hosts using [Ansible](http://www.ansible.com/).
 
-[!WARNING]  
-This Ansible Role is no longer maintained and the project now read only. Thank You.
+> [!WARNING]
+> This Ansible Role is no longer maintained and the project now read only. Thank You.
 
 Requirements
 ------------
